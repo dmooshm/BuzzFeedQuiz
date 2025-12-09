@@ -7,14 +7,14 @@ public class Quiz {
 
     public static void main(String[] args) throws Exception {
 
-        Category rock = new Category("Rock", "");
+        Category rock = new Category("Rock", ""); //fill out descriptions later
         Category chicken = new Category("Chicken", "");
         Category totoro = new Category("Totoro", "");
         Category cat = new Category("Cat", "");
 
+        
 
-
-}
+    }
 
 
 

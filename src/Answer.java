@@ -1,11 +1,11 @@
 public class Answer {
     
     String label;
-    Category cat;
+    int cat;
 
-    Answer(String label, Category c) {
+    Answer(String label, int cat) {
         this.label = label; 
-        this.cat = c;
+        this.cat = cat;
     }
 
 }
