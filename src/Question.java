@@ -41,8 +41,7 @@ public class Question {
 
         getResponse(new Scanner(System.in)); 
 
-        int[] WhichOneAreYou = new int[4];
-        
+        int[] WhichOneAreYou = {0, 0, 0, 0};
 
 
 
