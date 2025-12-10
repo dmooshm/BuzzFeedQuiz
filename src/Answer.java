@@ -1,12 +1,20 @@
 public class Answer {
     
     String label;
-    Category cat;
+    int id;
 
-    Answer(String label, Category c) {
+
+    Answer(String label, int id) {
         this.label = label; 
-        this.cat = c;
+        this.id = id;
+    }
+
+    public String toString() {
+        return label;  
+    }
+
+    public int toID() {
+        return id;
     }
 
 }
-
