@@ -7,14 +7,58 @@ import java.util.Scanner;
 
 public class Quiz {
 
-    static Category rock = new Category("Rock", ""); //fill out descriptions later
-    static Category chicken = new Category("Chicken", "");
-    static Category totoro = new Category("Totoro", "");
-    static Category cat = new Category("Cat", "");
+static String name;
+ static Category rock = new Category(
+    "Rock",
+    "You're calm, steady, and reliable and unshakeable like a mountain!",
+    """
+       _______
+    /         \\
+   |           |
+   |. (•_•)   |
+    \\_______/
+    """
+);
+
+static Category chicken = new Category(
+    "Chicken",
+    "You're kinda mindless, a little clucky, but full of energy and enthusiasm!",
+    """
+         __
+       <(o )
+        ( ._> /
+         `---'
+    """
+);
+
+static Category totoro = new Category(
+    "Totoro",
+    "You're gentle, imaginative, and comforting to be around with a wholesome, magical aura!",
+    """
+        ／￣￣＼
+       (  ´･ω･)
+       ()    ) づ
+        しーJ
+    """
+);
+
+static Category cat = new Category(
+    "Cat",
+    "You are independent, elegant, full of energy, observant and clever!",
+    """
+     /\\_/\\
+    ( o.o )
+     > ^ <
+     |. .|
+    """
+);
+
+
 
     static Scanner sc = new Scanner(System.in);
 
-    static Integer[] questionOrder = new Integer[]{1, 2, 3, 4, 5};
+
+    static Integer[] questionOrder = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
     static int currentQuestionNumber = 1;
 
 
@@ -22,7 +66,7 @@ public class Quiz {
 
         Introscreen();
 
-        questionOrder = new Integer[]{1, 2, 3, 4, 5}; 
+        questionOrder = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
         Collections.shuffle(Arrays.asList(questionOrder));
         // for (int i = 0; i < questionOrder.length; i++) {
         //     System.out.println("Question order " + (i+1) + ": " + questionOrder[i]);
@@ -43,16 +87,30 @@ public class Quiz {
 
         System.out.println("Presented by David and Gavin\n");
         System.out.println("Answer the following questions to find out which VS Pet matches your personality!\n");
-        System.out.println("Press Enter to begin the quiz!");
+        System.out.print("What is your name?  ");
+        System.out.println("Enter your name:");
+        name = sc.nextLine();
+
+            System.out.println("\nWelcome, " + name + "! Please hit Enter to start the quiz!");
 
         sc.nextLine();
 
     }
 
 
-    public static void calculateResult() {
+    public static void calculateResult() throws InterruptedException {
         //calculate which category has the highest points and output result
-        System.out.println("Calculating results..."); //placeholder
+         System.out.print("Calculating");
+        try {
+            for (int i = 0; i < 5; i++) {
+                Thread.sleep(450);
+                System.out.print(".");
+                }
+        } catch 
+        (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("\n");
 
          int[] scores = Question.WhichOneAreYou;
          int highestScore = -1;
@@ -108,8 +166,9 @@ public class Quiz {
         }
 
         if (result != null) {
-            System.out.println("Your VS pet is " + result.label + "!");
-            System.out.println(result.description);
+            System.out.println("Thanks for completing the quiz, " + name + "! Your VS pet is: " + result.label + "!\n");
+            System.out.println(result.asciiArt);
+            System.out.println(result.description + "\n");
             System.out.println("Press Enter to restart the quiz!");
             sc.nextLine();
             Question.resetQuiz();
