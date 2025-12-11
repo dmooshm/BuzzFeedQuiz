@@ -9,6 +9,8 @@ import java.util.Arrays;
 public class Question {
 
     public static List<Answer> ansList;
+    public static int[] WhichOneAreYou = {0, 0, 0, 0};
+    public static boolean rerun = false;
 
     public static void askQuestion(int questionNumber) {
         
@@ -18,16 +20,18 @@ public class Question {
             "question 2: answerA: answerB: answerC: answerD", 
             "question 3: answerA: answerB: answerC: answerD",
             "question 4: answerA: answerB: answerC: answerD",
-            "question 5: answerA: answerB: answerC: answerD",
-            "question 6: answerA: answerB: answerC: answerD"
+            "question 5: answerA: answerB: answerC: answerD"
             // "Your good friend invites you to a dinner party in the evening a day in advance. You know that you will have limited time the next day, and will have to bring a dish to contribute. What would you bring?: A snack collection of all your friends favorite chips and candies: A chipotle catering set with 10 custom bowls: A dutch oven of chicken noodle soup: A fancy fruit plate with a great amount of variety"
             
         ));
         
         String[] parts = content.get(questionNumber - 1).split(": ");
 
-        System.out.println(parts[0]); //print question
-        
+        if (rerun == false) {
+            System.out.println(parts[0]); //print question
+        }
+        rerun = false;
+
         Answer[] possibleAnswers = new Answer[4]; //print answers
         for (int i = 0; i < 4; i++) {
             possibleAnswers[i] = new Answer(parts[i+1], i+1);
@@ -41,56 +45,44 @@ public class Question {
 
         getResponse(new Scanner(System.in)); 
 
-        int[] WhichOneAreYou = {0, 0, 0, 0};
-
-
+        // int[] WhichOneAreYou = {0, 0, 0, 0};
 
     }
 
-    
-    
 
-        // ask a question, and return the category that corresponds to the answer
-        // Category ask(Scanner sc) {
-        //     System.out.println(this.label);
-        //     // prints out all the answer choices
-        //     for (int i = 0; i < this.possibleAnswers.length; i++) {
-        //         String choice = Integer.toString(i + 1);
-        //         System.out.println("[" + choice + "]:" +
-        //                 this.possibleAnswers[i].label);
-        //     }
-        //     int ans = sc.nextInt();
-        //     return possibleAnswers[ans - 1].cat;
-        // }
-
-    public static Category getResponse(Scanner sc){
-
-        // Category rock = new Category("Rock", ""); //fill out descriptions later
-        // Category chicken = new Category("Chicken", "");
-        // Category totoro = new Category("Totoro", "");
-        // Category cat = new Category("Cat", "");
+    public static void getResponse(Scanner sc){
 
         int response = sc.nextInt(); //get user input; set it as response
-        System.out.println("You typed:" + response); //print what the user typed
-        // System.out.println("You selected: " + ansList.get(response-1).toString()); //print what the user selected
 
         if (response != 1 && response != 2 && response != 3 && response != 4) {
             System.out.println("That isn't an option :( -- Please select one of the answers below:");
-            for (int i = 0; i < ansList.size(); i++) { //print answers--including numbered formatting
-                System.out.println("[" + (i+1) + "]: " + ansList.get(i).toString());
-            }
-            return null;
+            rerun = true;
+            askQuestion(Quiz.questionOrder[Quiz.currentQuestionNumber-1]);
         } else if(ansList.get(response-1).toID() == 1) {
-            return Quiz.rock; //if answer is 1, return rock category
+            WhichOneAreYou[0]++;
+            askNextQuestion();
         } else if(ansList.get(response-1).toID() == 2) {
-            return Quiz.chicken; //if answer is 2, return chicken category
+            WhichOneAreYou[1]++;
+            askNextQuestion();
         } else if(ansList.get(response-1).toID() == 3) {
-            return Quiz.totoro; //if answer is 3, return totoro category
+            askNextQuestion();
+            WhichOneAreYou[2]++;
         } else if(ansList.get(response-1).toID() == 4) {
-            return Quiz.cat;
+            WhichOneAreYou[3]++;
+            askNextQuestion();
         } 
 
-        return null;
+    }
+
+
+    public static void askNextQuestion() {
+
+        if (Quiz.currentQuestionNumber < 5) {
+            Quiz.currentQuestionNumber++;
+            askQuestion(Quiz.questionOrder[Quiz.currentQuestionNumber-1]);
+        } else {
+            Quiz.calculateResult();
+        }
 
     }
 
