@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Quiz {
 
+// gavin
 static String name;
  static Category rock = new Category(
     "Rock",
@@ -66,6 +67,7 @@ static Category cat = new Category(
 
         Introscreen();
 
+// david
         int totalQuestions = Question.getTotalQuestions();
         questionOrder = new Integer[totalQuestions];
 
@@ -80,7 +82,7 @@ static Category cat = new Category(
 
     }
 
-
+// gavin
     public static void Introscreen(){
 
         System.out.println("\n\n\nWhich VS Pet are you?\n\n\n");
