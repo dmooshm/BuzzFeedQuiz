@@ -11,11 +11,8 @@ public class Question {
     public static List<Answer> ansList;
     public static int[] WhichOneAreYou = {0, 0, 0, 0};
     public static boolean rerun = false;
-    public static ArrayList<String> content;
 
-    public static void askQuestion(int questionNumber) throws InterruptedException {
-        
-        content = new ArrayList<String>(List.of(
+    public static ArrayList<String> content = new ArrayList<>(List.of(
                 // Question 1
             "Your good friend invited you to a dinner party in the evening a day in advance. You know that you will have limited time the next day, and will have to bring a dish to contribute.: A chipotle catering set with 10 custom bowls: A snack collection of all your friends favorite chips and candies: A fancy fruit plate with a great amount of variety: A dutch oven of chicken noodle soup",
             
@@ -38,12 +35,25 @@ public class Question {
             "You are offered a variety of jobs. They all pay handsomely. Which will you choose?: Teacher: Therapist: I’ll start my own business!: Truck driver",
             
             // Question 8
-            "You need 500,000 dollars, and fast! What are you going to do?: I’ll just get a loan!: I’ll just continue working at my current job and save.: I’ll trade stocks!: I’ll gamble all of my money!"
+            "You need 500,000 dollars, and fast! What are you going to do?: I’ll just get a loan!: I’ll just continue working at my current job and save.: I’ll trade stocks!: I’ll gamble all of my money!",
                 
+            // Question 9 
+            "You’re picking a notebook for the school year. Which one feels right?: A simple, sturdy hardcover: A colorful spiral with fun patterns: A clean dotted journal: A soft pastel notebook with rounded edges",
 
-            // "Your good friend invites you to a dinner party in the evening a day in advance. You know that you will have limited time the next day, and will have to bring a dish to contribute. What would you bring?: A snack collection of all your friends favorite chips and candies: A chipotle catering set with 10 custom bowls: A dutch oven of chicken noodle soup: A fancy fruit plate with a great amount of variety"
-            
+            "You're deciding on a weekend activity. You…: Take a hike: Browse a local market: Work on a personal project: Lounge in a café with a book",
+
+            "Your phone background is…: Solid blue: Photo collage of friends and family: Black and white image of NYC skyline: A random Pinterest illustration of a sunset",
+
+            "If you were buying socks, you’d choose…: Thick gray crew socks: Yellow and white stripped socks: Black socks that fit with everyday outfits: Soft pastel socks with little clouds",
+
+            "You find a single coin on the sidewalk. What will you do!: Pick it up and put it in your wallet!: Flip it three times for luck!: Examine the year and mint carefully to check value!: Place it in a small decorative dish at home!",
+
+            "Choosing a tea, you would rather have...: Classic earl gray black tea: A wild fruit blend you’ve never tried: A rare imported green tea: Chamomile with a hint of lavender"
         ));
+
+    public static void askQuestion(int questionNumber) throws InterruptedException {
+        
+        
         
         String[] parts = content.get(questionNumber - 1).split(": ");
 
@@ -125,8 +135,19 @@ public class Question {
         WhichOneAreYou = new int[]{0, 0, 0, 0};
         Quiz.currentQuestionNumber = 1;
         Quiz.Introscreen();
+        int totalQuestions = content.size();
+        Quiz.questionOrder = new Integer[totalQuestions];
+
+        for (int i = 0; i < totalQuestions; i++) {
+        Quiz.questionOrder[i] = i + 1;
+        }
+
         Collections.shuffle(Arrays.asList(Quiz.questionOrder));
         askQuestion(Quiz.questionOrder[0]);
+        }
+
+    public static int getTotalQuestions() {
+     return content.size();
     }
 
 }  
