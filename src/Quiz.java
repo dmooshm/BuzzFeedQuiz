@@ -58,7 +58,7 @@ static Category cat = new Category(
     static Scanner sc = new Scanner(System.in);
 
 
-    static Integer[] questionOrder = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
+    static Integer[] questionOrder;
     static int currentQuestionNumber = 1;
 
 
@@ -66,14 +66,14 @@ static Category cat = new Category(
 
         Introscreen();
 
-        questionOrder = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8};
-        Collections.shuffle(Arrays.asList(questionOrder));
-        // for (int i = 0; i < questionOrder.length; i++) {
-        //     System.out.println("Question order " + (i+1) + ": " + questionOrder[i]);
-        // }
+        int totalQuestions = Question.getTotalQuestions();
+        questionOrder = new Integer[totalQuestions];
 
-        
-        
+        for (int i = 0; i < totalQuestions; i++) {
+            questionOrder[i] = i + 1;
+        }
+
+        Collections.shuffle(Arrays.asList(questionOrder));
         Question.askQuestion(questionOrder[0]);
 
         sc.close();
