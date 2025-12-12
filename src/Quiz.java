@@ -24,7 +24,7 @@ static Category chicken = new Category(
     "Chicken",
     "You're kinda mindless, a little clucky, but full of energy and enthusiasm!",
     """
-         __
+         __  Quack!
        <(o )
         ( ._> /
          `---'
@@ -36,7 +36,7 @@ static Category totoro = new Category(
     "You're gentle, imaginative, and comforting to be around with a wholesome, magical aura!",
     """
         ／￣￣＼
-       (  ´･ω･)
+       (  ´･ω･) yay!
        ()    ) づ
         しーJ
     """
@@ -46,7 +46,7 @@ static Category cat = new Category(
     "Cat",
     "You are independent, elegant, full of energy, observant and clever!",
     """
-     /\\_/\\
+     /\\_/\\ Meow!
     ( o.o )
      > ^ <
      |. .|
